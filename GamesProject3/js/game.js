@@ -64,7 +64,7 @@ const drawEverything = () => {
     tieFighter.width,
     tieFighter.height
   );
-  context.drawImage(laserImg, laser.x, laser.y, laser.width, laser.height);
+  context.drawImage(laserImg, xwing.x + 22, xwing.y, laser.width, laser.height);
 };
 
 const drawLoop = () => {
@@ -74,5 +74,26 @@ const drawLoop = () => {
 
   requestAnimationFrame(drawLoop);
 };
+
+document.addEventListener("keydown", (event) => {
+  switch (event.code) {
+    case "ArrowRight":
+    case "KeyD":
+      if (xwing.x < 750) xwing.x += 10;
+      break;
+    case "ArrowLeft":
+    case "KeyA":
+      if (xwing.x > 0) xwing.x -= 10;
+      break;
+    case "ArrowUp":
+    case "KeyW":
+      xwing.y -= 10;
+      break;
+    case "ArrowDown":
+    case "KeyS":
+      xwing.y += 10;
+      break;
+  }
+});
 
 drawLoop();
