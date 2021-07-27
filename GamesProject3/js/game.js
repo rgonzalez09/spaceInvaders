@@ -5,18 +5,18 @@ const backgroundImg = new Image();
 
 backgroundImg.src = `./images/background.jpg`;
 
-let i = 0;
-let j = canvas.width;
+let i = canvas.height;
+let j = 0;
 
 const draw = () => {
   requestAnimationFrame(draw);
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, canvas.height, canvas.height);
   i--;
 
-  if (i <= -canvas.width) i = canvas.width;
+  if (i <= -canvas.height) i = canvas.height;
 
   j--;
-  if (j <= -canvas.width) j = canvas.width;
+  if (j <= -canvas.height) j = canvas.height;
 
   context.drawImage(backgroundImg, i, 0, canvas.width, canvas.height);
   context.drawImage(backgroundImg, j, 0, canvas.width, canvas.height);
@@ -44,7 +44,7 @@ const laserImg = new Image();
 laserImg.src = `../images/laser-blue-1.png`;
 
 const tieFighter = {
-  x: 350,
+  x: 360,
   y: 10,
   width: 50,
   height: 50,
@@ -54,6 +54,11 @@ tieFighterImg.src = `../images/tie_fighter-removebg-preview.png`;
 //tieFighterImg.addEventListener("load", ()=>{
 //context.drawImage(tieFighterImg, tieFighter.x, tieFighter.y, tieFighter.width, tieFighter.height)
 //})
+const createLaser = () => {
+  context.drawImage(laserImg, laser.x, laser.y, laser.width, laser.height);
+  const audio = new Audio("./sounds/XWing-Laser.wav");
+  audio.play();
+};
 
 const drawEverything = () => {
   context.drawImage(xwingImg, xwing.x, xwing.y, xwing.width, xwing.height);
@@ -64,7 +69,29 @@ const drawEverything = () => {
     tieFighter.width,
     tieFighter.height
   );
-  context.drawImage(laserImg, xwing.x + 22, xwing.y, laser.width, laser.height);
+  context.drawImage(
+    tieFighterImg,
+    tieFighter.x + tieFighter.x,
+    tieFighter.y,
+    tieFighter.width,
+    tieFighter.height
+  );
+  context.drawImage(
+    tieFighterImg,
+    tieFighter.x - tieFighter.x,
+    tieFighter.y,
+    tieFighter.width,
+    tieFighter.height
+  );
+  context.drawImage(
+    tieFighterImg,
+    tieFighter.x - tieFighter.x + 50,
+    tieFighter.y,
+    tieFighter.width,
+    tieFighter.height
+  );
+  //context.drawImage(laserImg, laser.x, laser.y, laser.width, laser.height);
+  if (laser.y <= canvas.height) laser.y === xwing.y;
 };
 
 const drawLoop = () => {
@@ -92,6 +119,9 @@ document.addEventListener("keydown", (event) => {
     case "ArrowDown":
     case "KeyS":
       xwing.y += 10;
+      break;
+    case "Space":
+      createLaser();
       break;
   }
 });
