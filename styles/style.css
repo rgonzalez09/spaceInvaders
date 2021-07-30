@@ -1,0 +1,30 @@
+body {
+  padding-left: 30vw;
+
+  background-image: url(../images/background\ 2.0.jpg);
+}
+
+h1 {
+  padding-left: 11vw;
+  color: white;
+}
+h2 {
+  padding-left: 12vw;
+  color: white;
+}
+h3 {
+  padding-left: 14vw;
+  color: white;
+}
+h4 {
+  padding-left: 11.25vw;
+  color: white;
+}
+
+#main-page {
+  background-image: url(../images/background\ 2.0.jpg);
+  background-repeat: no-repeat;
+}
+#title {
+  margin-left: 45px;
+}
